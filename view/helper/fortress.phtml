@@ -1,0 +1,24 @@
+<?php if ($fortressGuildList): ?>
+<div class="margin-top-30">
+	<h3><?= $this->translate('Fortress') ?></h3>
+	<hr/>
+	<ul class="list-unstyled">
+        <?php
+            $fortressMapping = [
+                1 => 'JG Fortress',
+                3 => 'HT Fortress',
+                4 => 'CT Fortress',
+                6 => 'BT Fortress',
+        ];
+        ?>
+		<?php foreach ($fortressGuildList as $fortress) : ?>
+            <li>
+                <strong><?= $this->escapeHtml($fortressMapping[$fortress->getId()]) ?>:</strong>
+                <a class="text-primary" href="<?= $this->url('PServerRanking/guild', ['id' => $fortress->getGuild()->getId()]) ?>">
+                    <?= $this->escapeHtml($fortress->getGuild()->getName()) ?>
+                </a>
+            </li>
+		<?php endforeach ?>
+	</ul>
+</div>
+<?php endif; ?>
