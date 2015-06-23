@@ -22,8 +22,6 @@
   ],
   "require": {
     "php": ">=5.4",
-    "twig/twig": "1.*",
-    "doctrine/doctrine-orm-module": "0.*",
     "mabuzagu/pdo-dblib-module": "dev-master",
     "kokspflanze/game-backend": "dev-master",
     "kokspflanze/p-server-ranking": "dev-master"
