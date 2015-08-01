@@ -1,4 +1,4 @@
-<?php if ($fortressGuildList): ?>
+<?php if ($this->fortressGuildList): ?>
 <div class="margin-top-30">
 	<h3><?= $this->translate('Fortress') ?></h3>
 	<hr/>
@@ -11,7 +11,9 @@
                 6 => 'BT Fortress',
         ];
         ?>
-		<?php foreach ($fortressGuildList as $fortress) : ?>
+		<?php foreach ($this->fortressGuildList as $fortress) :
+            /** @var $fortress \GameBackend\Entity\SRO\Shard\SiegeFortress */
+        ?>
             <li>
                 <strong><?= $this->escapeHtml($fortressMapping[$fortress->getId()]) ?>:</strong>
                 <a class="text-primary" href="<?= $this->url('PServerRanking/guild', ['id' => $fortress->getGuild()->getId()]) ?>">
