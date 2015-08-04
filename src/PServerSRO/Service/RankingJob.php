@@ -71,12 +71,54 @@ class RankingJob implements ServiceManagerAwareInterface
     }
 
     /**
+     * @param int $limit
+     *
+     * @return Paginator|\GameBackend\Entity\SRO\Shard\Character[]
+     */
+    public function getTopTraderEntityData($limit = 10)
+    {
+        $topTrader = $this->getGameBackendService()->getTopJobCharacter(1);
+
+        return $topTrader->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param int $limit
+     *
+     * @return Paginator|\GameBackend\Entity\SRO\Shard\Character[]
+     */
+    public function getTopHunterEntityData($limit = 10)
+    {
+        $topHunter = $this->getGameBackendService()->getTopJobCharacter(3);
+
+        return $topHunter->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param int $limit
+     *
+     * @return Paginator|\GameBackend\Entity\SRO\Shard\Character[]
+     */
+    public function getTopThievesEntityData($limit = 10)
+    {
+        $topThieves = $this->getGameBackendService()->getTopJobCharacter(2);
+
+        return $topThieves->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param     $queryBuilder
      * @param int $page
      *
      * @return Paginator|null
      */
-    protected function getPaginator4QueryBuilder( $queryBuilder, $page = 1 )
+    protected function getPaginator4QueryBuilder($queryBuilder, $page = 1)
     {
         if (!$queryBuilder) {
             return null;

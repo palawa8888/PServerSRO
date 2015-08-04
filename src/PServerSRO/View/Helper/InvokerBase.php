@@ -42,4 +42,12 @@ class InvokerBase extends AbstractHelper
         return $this;
     }
 
+    /**
+     * @return \PServerSRO\Service\RankingJob
+     */
+    public function getRankingJobService()
+    {
+        return $this->getService('pserversro_ranking_job_service');
+    }
+
 } 

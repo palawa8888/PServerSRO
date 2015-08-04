@@ -1,0 +1,22 @@
+<?php if ($this->jobList): ?>
+<h3>Top Hunter</h3>
+
+<div class="table-responsive">
+    <table>
+        <?php
+            $i = 1;
+            foreach($this->jobList as $character):
+            /** @var $character \GameBackend\Entity\Game\CharacterInterface */
+        ?>
+        <tr>
+            <td><? $i++; ?></td>
+            <td>
+                <a href="<?= $this->url('PServerRanking/character', ['id' => $character->getId() ]) ?>">
+                    <?= $character->getName() ?>
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<?php endif; ?>

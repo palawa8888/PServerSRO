@@ -38,7 +38,16 @@ class Module
             'factories'  => [
                 'fortressGuildViewSro' => function ( AbstractPluginManager $pluginManager ) {
                     return new View\Helper\Fortress( $pluginManager->getServiceLocator() );
-                }
+                },
+                'rankingJobTraderViewSro' => function ( AbstractPluginManager $pluginManager ) {
+                    return new View\Helper\RankingJobTrader( $pluginManager->getServiceLocator() );
+                },
+                'rankingJobHunterViewSro' => function ( AbstractPluginManager $pluginManager ) {
+                    return new View\Helper\RankingJobHunter( $pluginManager->getServiceLocator() );
+                },
+                'rankingJobThievesViewSro' => function ( AbstractPluginManager $pluginManager ) {
+                    return new View\Helper\RankingJobThieves( $pluginManager->getServiceLocator() );
+                },
             ]
         ];
     }
