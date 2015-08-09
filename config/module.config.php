@@ -37,6 +37,9 @@ return [
     'view_manager' => [
         'template_map' => [
             'p-server-sro/fortress' => __DIR__ . '/../view/helper/fortress.phtml',
+            'p-server-sro/ranking-job-hunter' => __DIR__ . '/../view/helper/ranking-job-hunter.phtml',
+            'p-server-sro/ranking-job-thieves' => __DIR__ . '/../view/helper/ranking-job-thieves.phtml',
+            'p-server-sro/ranking-job-trader' => __DIR__ . '/../view/helper/ranking-job-trader.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
