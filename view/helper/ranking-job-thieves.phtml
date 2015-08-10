@@ -9,7 +9,7 @@
                 /** @var $character \GameBackend\Entity\Game\CharacterInterface */
                 ?>
                 <tr>
-                    <td><? $i++; ?></td>
+                    <td><?= $i++; ?></td>
                     <td>
                         <a href="<?= $this->url('PServerRanking/character', ['id' => $character->getId() ]) ?>">
                             <?= $character->getName() ?>

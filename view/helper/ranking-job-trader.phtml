@@ -1,5 +1,5 @@
 <?php if ($this->jobList): ?>
-    <h3>Top Trader</h3>
+    <h3></h3>
 
     <div class="table-responsive">
         <table>
@@ -9,7 +9,7 @@
                 /** @var $character \GameBackend\Entity\Game\CharacterInterface */
                 ?>
                 <tr>
-                    <td><? $i++; ?></td>
+                    <td><?= $i++; ?></td>
                     <td>
                         <a href="<?= $this->url('PServerRanking/character', ['id' => $character->getId() ]) ?>">
                             <?= $character->getName() ?>
