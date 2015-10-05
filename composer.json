@@ -21,16 +21,24 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.5",
     "mabuzagu/pdo-dblib-module": "dev-master",
     "kokspflanze/game-backend": "dev-master",
-    "kokspflanze/p-server-ranking": "dev-master"
+    "kokspflanze/p-server-ranking": "dev-master",
+    "kokspflanze/p-server-panel":"dev-master",
+    "kokspflanze/small-user":"dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
     "zendframework/zendframework": "~2.0",
     "fabpot/php-cs-fixer": "~1.0",
     "satooshi/php-coveralls": "dev-master",
-    "phpunit/phpcov": "~2.0"
+    "phpunit/phpcov": "~2.0",
+    "kokspflanze/p-server-cms":"dev-master",
+    "kokspflanze/p-server-admin":"dev-master",
+    "kokspflanze/zfc-ticket-system":"dev-master",
+    "thadafinser/zfc-datagrid":"dev-master",
+    "kokspflanze/p-server-ranking":"dev-master",
+    "san/san-captcha":"dev-master"
   }
 }

@@ -5,35 +5,9 @@ namespace PServerSRO\Service;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
-use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\ServiceManagerAwareInterface;
 
-class RankingJob implements ServiceManagerAwareInterface
+class RankingJob extends InvokableBase
 {
-
-    /** @var ServiceManager */
-    protected $serviceManager;
-
-    /**
-     * @return ServiceManager
-     */
-    public function getServiceManager()
-    {
-        return $this->serviceManager;
-    }
-
-    /**
-     * @param ServiceManager $serviceManager
-     *
-     * @return $this
-     */
-    public function setServiceManager( ServiceManager $serviceManager )
-    {
-        $this->serviceManager = $serviceManager;
-
-        return $this;
-    }
-
     /**
      * @param int $page
      *
@@ -130,13 +104,5 @@ class RankingJob implements ServiceManagerAwareInterface
         $paginator->setCurrentPageNumber($page);
 
         return $paginator;
-    }
-
-    /**
-     * @return \GameBackend\DataService\SRO
-     */
-    protected function getGameBackendService()
-    {
-        return $this->getServiceManager()->get('gamebackend_dataservice');
     }
 }

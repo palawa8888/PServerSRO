@@ -3,6 +3,28 @@
 return [
     'router' => [
         'routes' => [
+            'PServerSRO'  => [
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => [
+                    'route'    => '/sro-tools/',
+                ],
+                'may_terminate' => true,
+                'child_routes'  => [
+                    'un_stuck' => [
+                        'type' => 'segment',
+                        'options' => [
+                            'route'    => 'un-stuck.html',
+                            'constraints' => [
+                                'type'     => '[a-zA-Z]+',
+                            ],
+                            'defaults' => [
+                                'controller'	=> 'PServerSRO\Controller\UnStuck',
+                                'action'		=> 'index'
+                            ],
+                        ],
+                    ],
+                ],
+            ],
             'PServerRanking'  => [
                 'may_terminate' => true,
                 'child_routes'  => [
@@ -27,11 +49,13 @@ return [
     'controllers' => [
         'invokables' => [
             'PServerSRO\Controller\RankingJob' => 'PServerSRO\Controller\RankingJobController',
+            'PServerSRO\Controller\UnStuck' => 'PServerSRO\Controller\UnStuckController',
         ],
     ],
     'service_manager' => [
         'invokables' => [
             'pserversro_ranking_job_service' => 'PServerSRO\Service\RankingJob',
+            'pserversro_unstuck_service' => 'PServerSRO\Service\UnStuck',
         ],
     ],
     'view_manager' => [
@@ -79,5 +103,25 @@ return [
                 ],
             ],
         ],
+    ],
+    'p-server-sro' => [
+        'un_stuck_position' => [
+            /** HT position */
+            'latest_region' => 23687,
+            'world_id' => 1,
+            'pos_x' => '1117.602',
+            'pos_y' => '244.2866',
+            'pos_z' => '136.339',
+            'tel_region' => 0,
+            'tel_pos_x' => 0,
+            'tel_pos_y' => 0,
+            'tel_pos_z' => 0,
+            'died_region' => 0,
+            'died_pos_x' => 0,
+            'died_pos_y' => 0,
+            'died_pos_z' => 0,
+            'tel_world_id' => 1,
+            'died_world_id' => 1
+        ]
     ]
 ];

@@ -35,18 +35,18 @@ class Module
     public function getViewHelperConfig()
     {
         return [
-            'factories'  => [
-                'fortressGuildViewSro' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\Fortress( $pluginManager->getServiceLocator() );
+            'factories' => [
+                'fortressGuildViewSro' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\Fortress($pluginManager->getServiceLocator());
                 },
-                'rankingJobTraderViewSro' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\RankingJobTrader( $pluginManager->getServiceLocator() );
+                'rankingJobTraderViewSro' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\RankingJobTrader($pluginManager->getServiceLocator());
                 },
-                'rankingJobHunterViewSro' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\RankingJobHunter( $pluginManager->getServiceLocator() );
+                'rankingJobHunterViewSro' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\RankingJobHunter($pluginManager->getServiceLocator());
                 },
-                'rankingJobThievesViewSro' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\RankingJobThieves( $pluginManager->getServiceLocator() );
+                'rankingJobThievesViewSro' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\RankingJobThieves($pluginManager->getServiceLocator());
                 },
             ]
         ];
@@ -60,7 +60,15 @@ class Module
      */
     public function getServiceConfig()
     {
-        return [];
+        return [
+            'factories' => [
+                'pserversro_unstuck_options' => function ($sm) {
+                    /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                    $config = $sm->get('Configuration');
+                    return new Options\UnStuckPositionOptions($config['p-server-sro']['un_stuck_position']);
+                },
+            ],
+        ];
     }
 
 }
