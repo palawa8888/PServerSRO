@@ -14,9 +14,6 @@ return [
                         'type' => 'segment',
                         'options' => [
                             'route'    => 'un-stuck.html',
-                            'constraints' => [
-                                'type'     => '[a-zA-Z]+',
-                            ],
                             'defaults' => [
                                 'controller'	=> 'PServerSRO\Controller\UnStuck',
                                 'action'		=> 'index'
