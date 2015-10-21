@@ -36,7 +36,6 @@
     "kokspflanze/p-server-cms":"dev-master",
     "kokspflanze/p-server-admin":"dev-master",
     "kokspflanze/zfc-ticket-system":"dev-master",
-    "thadafinser/zfc-datagrid":"dev-master",
     "kokspflanze/p-server-ranking":"dev-master",
     "san/san-captcha":"dev-master"
   }
