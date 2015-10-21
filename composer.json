@@ -37,6 +37,7 @@
     "kokspflanze/p-server-admin":"dev-master",
     "kokspflanze/zfc-ticket-system":"dev-master",
     "kokspflanze/p-server-ranking":"dev-master",
+    "zf-commons/zfc-twig": "dev-master",
     "san/san-captcha":"dev-master"
   }
 }
