@@ -119,6 +119,16 @@ return [
             'died_pos_z' => 0,
             'tel_world_id' => 1,
             'died_world_id' => 1
-        ]
-    ]
+        ],
+    ],
+	'p-server-panel' => [
+        'character_panel_navigation' => [
+            'download' => [
+                'name' => 'UnStuck',
+                'route' => [
+                    'name' => 'PServerSRO/un_stuck',
+                ],
+            ],
+        ],
+    ],
 ];
