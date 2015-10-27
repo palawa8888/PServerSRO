@@ -28,6 +28,8 @@ that are listed in `composer.json`
 - fortresswar information [view-helper, `fortressGuildViewSro`]
 - ranking of the different jobs information [view-helper, `rankingJobTraderViewSro`, `rankingJobHunterViewSro`, `rankingJobThievesViewSro`]
 - also own ranking pages for the jobs [route, `PServerRanking/sro_ranking_job` with action `top-trader`, `top-hunter` or `top-hieves`]
+- unstuck feature in the character panel
+
 
 ## Problems or improvements
 
