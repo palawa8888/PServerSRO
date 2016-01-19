@@ -7,8 +7,8 @@ use Zend\View\Model\ViewModel;
 
 class RankingJobHunter extends InvokerBase
 {
-
     /**
+     * @param int $limit
      * @return string
      */
     public function __invoke($limit = 10)

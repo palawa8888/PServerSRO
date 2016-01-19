@@ -123,7 +123,7 @@ return [
     ],
 	'p-server-panel' => [
         'character_panel_navigation' => [
-            'download' => [
+            'unstuck' => [
                 'name' => 'UnStuck',
                 'route' => [
                     'name' => 'PServerSRO/un_stuck',
