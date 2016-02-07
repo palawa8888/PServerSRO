@@ -3,7 +3,7 @@
 
 namespace PServerSRO\Service;
 
-use PServerCMS\Entity\UserInterface;
+use PServerCore\Entity\UserInterface;
 use PServerSRO\Options\UnStuckPositionOptions;
 
 class UnStuck extends InvokableBase
@@ -59,7 +59,7 @@ class UnStuck extends InvokableBase
         $errorList = [];
 
         if (!$character = $this->getCharacterService()->getCharacter4UserCharacterId($user, $charId)) {
-            $errorList[] = 'That´s not your character!';
+            $errorList[] = 'Thatï¿½s not your character!';
         }
 
         if (!$errorList && $this->getGameBackendService()->isCharacterOnline($character)) {

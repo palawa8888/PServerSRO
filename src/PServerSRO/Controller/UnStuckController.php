@@ -14,7 +14,7 @@ class UnStuckController extends AbstractActionController
     public function indexAction()
     {
         $characterId = $this->params()->fromPost('characterId', 0);
-        /** @var \PServerCMS\Entity\UserInterface $user */
+        /** @var \PServerCore\Entity\UserInterface $user */
         $user = $this->getUserService()->getAuthService()->getIdentity();
         $response = $this->getUnStuckService()->unStuckCharacter($user, $characterId);
 
@@ -30,7 +30,7 @@ class UnStuckController extends AbstractActionController
     }
 
     /**
-     * @return \PServerCMS\Service\User
+     * @return \PServerCore\Service\User
      */
     protected function getUserService()
     {

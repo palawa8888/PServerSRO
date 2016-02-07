@@ -16,7 +16,7 @@ php composer.phar require kokspflanze/p-server-sro
 # (When asked for a version, type `dev-master`)
 ```
 
-Then add `PServerSRO`, `DoctrineModule`, `DoctrineORMModule`, `PDODblibModule`, `GameBackend` and `PServerRanking`
+Then add `PServerSRO`, `DoctrineModule`, `DoctrineORMModule`, `PDODblibModule`, `GameBackend`, `PServerCore` and `PServerRanking`
  to your `config/application.config.php` and create directory
 `data/cache` and make sure your application has write access to it.
 
