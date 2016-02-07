@@ -22,20 +22,20 @@
   ],
   "require": {
     "php": ">=5.5",
-    "kokspflanze/game-backend": "~0.1",
-    "mabuzagu/pdo-dblib-module": "dev-master",
-    "kokspflanze/p-server-core": "~0.1",
-    "kokspflanze/p-server-panel": "dev-master",
-    "kokspflanze/p-server-admin": "dev-master",
-    "zf-commons/zfc-twig": "dev-master"
-  },
-  "require-dev": {
     "zendframework/zend-modulemanager": "~2.5",
     "zendframework/zend-servicemanager": "~2.5",
     "zendframework/zend-mvc": "~2.5",
-    "zendframework/zend-loader": "~2.5",
     "zendframework/zend-config": "~2.5",
     "zendframework/zend-view": "~2.5",
+    "kokspflanze/game-backend": "~0.1",
+    "mabuzagu/pdo-dblib-module": "dev-master",
+    "kokspflanze/p-server-core": "~0.1",
+    "kokspflanze/p-server-panel": "~0.1",
+    "kokspflanze/p-server-admin": "~0.1",
+    "zf-commons/zfc-twig": "dev-master"
+  },
+  "require-dev": {
+    "zendframework/zend-loader": "~2.5",
     "zendframework/zend-serializer": "~2.5",
     "zendframework/zend-log": "~2.5",
     "zendframework/zend-i18n": "~2.5",
