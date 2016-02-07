@@ -39,7 +39,7 @@
     </div>
 
     {% if ranking %}
-        {{ paginationControl(ranking, 'Sliding', 'p-server-cms/paginator', {'route' : 'PServerRanking/sro_ranking_job', 'params': {'action' : 'top-trader'}}) }}
+        {{ paginationControl(ranking, 'Sliding', 'p-server-core/paginator', {'route' : 'PServerRanking/sro_ranking_job', 'params': {'action' : 'top-trader'}}) }}
     {% endif %}
 
 {% endblock content %}
