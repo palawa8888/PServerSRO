@@ -11,21 +11,21 @@ class RankingJobController extends AbstractActionController
     public function topTraderAction()
     {
         return [
-            'ranking' => $this->getRankingJobService()->getTopTrader( $this->params()->fromRoute('page') )
+            'ranking' => $this->getRankingJobService()->getTopTrader($this->params()->fromRoute('page'))
         ];
     }
 
     public function topHunterAction()
     {
         return [
-            'ranking' => $this->getRankingJobService()->getTopHunter( $this->params()->fromRoute('page') )
+            'ranking' => $this->getRankingJobService()->getTopHunter($this->params()->fromRoute('page'))
         ];
     }
 
     public function topThievesAction()
     {
         return [
-            'ranking' => $this->getRankingJobService()->getTopThieves( $this->params()->fromRoute('page') )
+            'ranking' => $this->getRankingJobService()->getTopThieves($this->params()->fromRoute('page'))
         ];
     }
 

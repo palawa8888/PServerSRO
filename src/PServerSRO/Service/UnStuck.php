@@ -15,7 +15,7 @@ class UnStuck extends InvokableBase
      */
     public function unStuckCharacter(UserInterface $user, $charId)
     {
-        $errorList = $this->validation($user,  $charId);
+        $errorList = $this->validation($user, $charId);
 
         if ($errorList) {
             return $errorList;

@@ -3,7 +3,7 @@ namespace PServerSRO\Service;
 
 
 use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\ServiceManagerAwareInterface;;
+use Zend\ServiceManager\ServiceManagerAwareInterface;
 
 abstract class InvokableBase implements ServiceManagerAwareInterface
 {
@@ -23,7 +23,7 @@ abstract class InvokableBase implements ServiceManagerAwareInterface
      *
      * @return $this
      */
-    public function setServiceManager( ServiceManager $serviceManager )
+    public function setServiceManager(ServiceManager $serviceManager)
     {
         $this->serviceManager = $serviceManager;
 

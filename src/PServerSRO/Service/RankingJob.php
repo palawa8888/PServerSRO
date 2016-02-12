@@ -2,8 +2,8 @@
 
 namespace PServerSRO\Service;
 
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Zend\Paginator\Paginator;
 
 class RankingJob extends InvokableBase

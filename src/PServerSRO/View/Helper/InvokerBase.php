@@ -17,9 +17,9 @@ class InvokerBase extends AbstractHelper
     /**
      * @param ServiceLocatorInterface $serviceLocatorInterface
      */
-    public function __construct( ServiceLocatorInterface $serviceLocatorInterface )
+    public function __construct(ServiceLocatorInterface $serviceLocatorInterface)
     {
-        $this->setServiceLocator( $serviceLocatorInterface );
+        $this->setServiceLocator($serviceLocatorInterface);
     }
 
     /**
@@ -35,7 +35,7 @@ class InvokerBase extends AbstractHelper
      *
      * @return $this
      */
-    protected function setServiceLocator( ServiceLocatorInterface $serviceLocator )
+    protected function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
         $this->serviceLocator = $serviceLocator;
 
