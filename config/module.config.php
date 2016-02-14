@@ -20,6 +20,16 @@ return [
                             ],
                         ],
                     ],
+                    'admin_character' => [
+                        'type' => 'segment',
+                        'options' => [
+                            'route'    => 'admin/character.html',
+                            'defaults' => [
+                                'controller'	=> 'PServerSRO\Controller\AdminCharacter',
+                                'action'		=> 'index'
+                            ],
+                        ],
+                    ],
                 ],
             ],
             'PServerRanking'  => [
@@ -45,6 +55,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
+            'PServerSRO\Controller\AdminCharacter' => 'PServerSRO\Controller\AdminCharacterController',
             'PServerSRO\Controller\RankingJob' => 'PServerSRO\Controller\RankingJobController',
             'PServerSRO\Controller\UnStuck' => 'PServerSRO\Controller\UnStuckController',
         ],
@@ -53,6 +64,7 @@ return [
         'invokables' => [
             'pserversro_ranking_job_service' => 'PServerSRO\Service\RankingJob',
             'pserversro_unstuck_service' => 'PServerSRO\Service\UnStuck',
+            'pserversro_admin_character_service' => 'PServerSRO\Service\AdminCharacter',
         ],
     ],
     'view_manager' => [
@@ -127,6 +139,30 @@ return [
                 'name' => 'UnStuck',
                 'route' => [
                     'name' => 'PServerSRO/un_stuck',
+                ],
+            ],
+        ],
+    ],
+    'p-server-admin' => [
+        'navigation' => [
+            'admin_user' => [
+                'name' => 'UserPanel',
+                'route' => [
+                    'name' => 'PServerAdmin/user',
+                ],
+                'children' => [
+                    'list' => [
+                        'name' => 'UserList',
+                        'route' => [
+                            'name' => 'PServerAdmin/user',
+                        ],
+                    ],
+                    'character' => [
+                        'name' => 'CharacterList',
+                        'route' => [
+                            'name' => 'PServerSRO/admin_character',
+                        ],
+                    ],
                 ],
             ],
         ],

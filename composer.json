@@ -31,7 +31,7 @@
     "mabuzagu/pdo-dblib-module": "dev-master",
     "kokspflanze/p-server-core": "~0.1",
     "kokspflanze/p-server-panel": "~0.1",
-    "kokspflanze/p-server-admin": "~0.1",
+    "thadafinser/zfc-datagrid": "~1.0",
     "zf-commons/zfc-twig": "dev-master"
   },
   "require-dev": {
