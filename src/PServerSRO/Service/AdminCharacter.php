@@ -3,6 +3,7 @@
 
 namespace PServerSRO\Service;
 
+use Doctrine\ORM\Query\Expr\Join;
 
 class AdminCharacter extends InvokableBase
 {
@@ -15,8 +16,10 @@ class AdminCharacter extends InvokableBase
         $repository = $this->getShardEntityManager()->getRepository($this->getGameOptions()->getEntityShardCharacter());
 
         $queryBuilder = $repository->createQueryBuilder('p')
-            ->select('p', 'user')
+            ->select('p', 'user', 'job', 'guild')
             ->join('p.user', 'user')
+            ->leftJoin('p.job', 'job')
+            ->leftJoin('p.guild', 'guild', Join::WITH, 'guild.id > 0')
             ->orderBy('p.id', 'desc')
             ->where('p.id > 0');
 

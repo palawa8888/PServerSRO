@@ -35,6 +35,7 @@
     "zf-commons/zfc-twig": "dev-master"
   },
   "require-dev": {
+    "kokspflanze/p-server-admin": "~0.1",
     "zendframework/zend-loader": "~2.5",
     "zendframework/zend-serializer": "~2.5",
     "zendframework/zend-log": "~2.5",
