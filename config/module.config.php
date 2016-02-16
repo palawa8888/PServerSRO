@@ -30,6 +30,16 @@ return [
                             ],
                         ],
                     ],
+                    'admin_smc_log' => [
+                        'type' => 'segment',
+                        'options' => [
+                            'route'    => 'admin/smc-log.html',
+                            'defaults' => [
+                                'controller'	=> 'PServerSRO\Controller\AdminSMCLog',
+                                'action'		=> 'index'
+                            ],
+                        ],
+                    ],
                 ],
             ],
             'PServerRanking'  => [
@@ -56,6 +66,7 @@ return [
     'controllers' => [
         'invokables' => [
             'PServerSRO\Controller\AdminCharacter' => 'PServerSRO\Controller\AdminCharacterController',
+            'PServerSRO\Controller\AdminSMCLog' => 'PServerSRO\Controller\AdminSMCLogController',
             'PServerSRO\Controller\RankingJob' => 'PServerSRO\Controller\RankingJobController',
             'PServerSRO\Controller\UnStuck' => 'PServerSRO\Controller\UnStuckController',
         ],
@@ -65,6 +76,7 @@ return [
             'pserversro_ranking_job_service' => 'PServerSRO\Service\RankingJob',
             'pserversro_unstuck_service' => 'PServerSRO\Service\UnStuck',
             'pserversro_admin_character_service' => 'PServerSRO\Service\AdminCharacter',
+            'pserversro_admin_smc_log_service' => 'PServerSRO\Service\AdminSMCLog',
         ],
     ],
     'view_manager' => [
@@ -161,6 +173,16 @@ return [
                         'name' => 'CharacterList',
                         'route' => [
                             'name' => 'PServerSRO/admin_character',
+                        ],
+                    ],
+                ],
+            ],
+            'admin_log' => [
+                'children' => [
+                    'PServerSRO\AdminSMCLog' => [
+                        'name'  => 'Game',
+                        'route' => [
+                            'name'   => 'PServerSRO/admin_smc_log',
                         ],
                     ],
                 ],
