@@ -3,22 +3,38 @@
 
 namespace PServerSRO\View\Helper;
 
-
+use PServerCore\Service\CachingHelper;
+use GameBackend\DataService\DataServiceInterface;
 use GameBackend\DataService\SRO;
-use PServerCore\Helper\HelperService;
+use Zend\Form\View\Helper\AbstractHelper;
 use Zend\View\Model\ViewModel;
 
-class Fortress extends InvokerBase
+class Fortress extends AbstractHelper
 {
-    use HelperService;
+    /** @var  CachingHelper */
+    protected $serviceCache;
+
+    /** @var  DataServiceInterface|SRO */
+    protected $gameDataService;
+
+    /**
+     * Fortress constructor.
+     * @param CachingHelper $serviceCache
+     * @param DataServiceInterface|SRO $gameDataService
+     */
+    public function __construct(CachingHelper $serviceCache, DataServiceInterface $gameDataService)
+    {
+        $this->serviceCache = $serviceCache;
+        $this->gameDataService = $gameDataService;
+    }
 
     /**
      * @return string
      */
     public function __invoke()
     {
-        $guildList = $this->getCachingHelperService()->getItem('PServerSROFortressInfo', function () {
-            $gameBackend = $this->getGameBackendService();
+        $guildList = $this->serviceCache->getItem('PServerSROFortressInfo', function () {
+            $gameBackend = $this->gameDataService;
 
             $guildList = null;
             if ($gameBackend instanceof SRO) {

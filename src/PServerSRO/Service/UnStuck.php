@@ -3,15 +3,50 @@
 
 namespace PServerSRO\Service;
 
+use Doctrine\ORM\EntityManager;
+use GameBackend\DataService\DataServiceInterface;
+use GameBackend\DataService\SRO;
 use PServerCore\Entity\UserInterface;
+use PServerPanel\Service\Character;
 use PServerSRO\Options\UnStuckPositionOptions;
 
-class UnStuck extends InvokableBase
+class UnStuck
 {
+    /** @var  DataServiceInterface|SRO */
+    protected $gameDataService;
+
+    /** @var  UnStuckPositionOptions */
+    protected $unstuckOptions;
+
+    /** @var  Character */
+    protected $characterService;
+
+    /** @var  EntityManager */
+    protected $shardEntityManager;
+
+    /**
+     * UnStuck constructor.
+     * @param DataServiceInterface|SRO $gameDataService
+     * @param UnStuckPositionOptions $unstuckOptions
+     * @param Character $characterService
+     * @param EntityManager $shardEntityManager
+     */
+    public function __construct(
+        DataServiceInterface $gameDataService,
+        UnStuckPositionOptions $unstuckOptions,
+        Character $characterService,
+        EntityManager $shardEntityManager
+    ) {
+        $this->gameDataService = $gameDataService;
+        $this->unstuckOptions = $unstuckOptions;
+        $this->characterService = $characterService;
+        $this->shardEntityManager = $shardEntityManager;
+    }
+
     /**
      * @param UserInterface $user
      * @param $charId
-     * @return array
+     * @return string[]
      */
     public function unStuckCharacter(UserInterface $user, $charId)
     {
@@ -22,9 +57,9 @@ class UnStuck extends InvokableBase
         }
 
         /** @var \GameBackend\Entity\SRO\Shard\Character $character */
-        $character = $this->getCharacterService()->getCharacter4UserCharacterId($user, $charId);
+        $character = $this->characterService->getCharacter4UserCharacterId($user, $charId);
 
-        $position = $this->getUnStuckPosition();
+        $position = $this->unstuckOptions;
 
         $character->setLatestRegion($position->getLatestRegion());
         $character->setWorldId($position->getWorldId());
@@ -42,9 +77,8 @@ class UnStuck extends InvokableBase
         $character->setTelWorldId($position->getTelWorldId());
         $character->setDiedWorldId($position->getDiedWorldId());
 
-        $entityManager = $this->getShardEntityManager();
-        $entityManager->persist($character);
-        $entityManager->flush();
+        $this->shardEntityManager->persist($character);
+        $this->shardEntityManager->flush();
 
         return ['success'];
     }
@@ -52,49 +86,25 @@ class UnStuck extends InvokableBase
     /**
      * @param UserInterface $user
      * @param $charId
-     * @return array
+     * @return string[]
      */
     protected function validation(UserInterface $user, $charId)
     {
         $errorList = [];
 
-        if (!$character = $this->getCharacterService()->getCharacter4UserCharacterId($user, $charId)) {
-            $errorList[] = 'That�s not your character!';
+        if (!$character = $this->characterService->getCharacter4UserCharacterId($user, $charId)) {
+            $errorList[] = 'Thats not your character!';
         }
 
-        if (!$errorList && $this->getGameBackendService()->isCharacterOnline($character)) {
+        if (!$errorList && $this->gameDataService->isCharacterOnline($character)) {
             $errorList[] = 'Please logout your character!';
         }
 
-        if (!$errorList && $this->getGameBackendService()->getInventorySlot($character, 8)) {
+        if (!$errorList && $this->gameDataService->getInventorySlot($character, 8)) {
             $errorList[] = 'Its not allowed with job-items!';
         }
 
         return $errorList;
-    }
-
-    /**
-     * @return UnStuckPositionOptions
-     */
-    protected function getUnStuckPosition()
-    {
-        return $this->getServiceManager()->get('pserversro_unstuck_options');
-    }
-
-    /**
-     * @return \PServerPanel\Service\Character
-     */
-    protected function getCharacterService()
-    {
-        return $this->getServiceManager()->get('pserverpanel_character_service');
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getShardEntityManager()
-    {
-        return $this->getServiceManager()->get('doctrine.entitymanager.orm_sro_shard');
     }
 
 }

@@ -1,5 +1,7 @@
 <?php
 
+use PServerSRO\Service;
+
 return [
     'router' => [
         'routes' => [
@@ -72,11 +74,44 @@ return [
         ],
     ],
     'service_manager' => [
-        'invokables' => [
-            'pserversro_ranking_job_service' => 'PServerSRO\Service\RankingJob',
-            'pserversro_unstuck_service' => 'PServerSRO\Service\UnStuck',
-            'pserversro_admin_character_service' => 'PServerSRO\Service\AdminCharacter',
-            'pserversro_admin_smc_log_service' => 'PServerSRO\Service\AdminSMCLog',
+        'aliases' => [
+            'pserversro_unstuck_service' => Service\UnStuck::class,
+            'pserversro_ranking_job_service' => Service\RankingJob::class,
+            'pserversro_admin_smc_log_service' => Service\AdminSMCLog::class,
+            'pserversro_admin_character_service' => Service\AdminCharacter::class,
+        ],
+        'factories' => [
+            Service\RankingJob::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\RankingJob($sm->get('gamebackend_dataservice'));
+            },
+            Service\UnStuck::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\UnStuck(
+                    $sm->get('gamebackend_dataservice'),
+                    $sm->get('pserversro_unstuck_options'),
+                    $sm->get('pserverpanel_character_service'),
+                    $sm->get('doctrine.entitymanager.orm_sro_shard')
+                );
+            },
+            Service\AdminSMCLog::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\AdminSMCLog(
+                    $sm->get('doctrine.entitymanager.orm_sro_account'),
+                    $sm->get('gamebackend_sro_options')
+                );
+            },
+            Service\AdminCharacter::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\AdminCharacter(
+                    $sm->get('doctrine.entitymanager.orm_sro_shard'),
+                    $sm->get('gamebackend_sro_options')
+                );
+            },
         ],
     ],
     'view_manager' => [

@@ -4,10 +4,24 @@ namespace PServerSRO\Service;
 
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use GameBackend\DataService\DataServiceInterface;
+use GameBackend\DataService\SRO;
 use Zend\Paginator\Paginator;
 
-class RankingJob extends InvokableBase
+class RankingJob
 {
+    /** @var  DataServiceInterface|SRO */
+    protected $gameDataService;
+
+    /**
+     * RankingJob constructor.
+     * @param DataServiceInterface|SRO $gameDataService
+     */
+    public function __construct(DataServiceInterface $gameDataService)
+    {
+        $this->gameDataService = $gameDataService;
+    }
+
     /**
      * @param int $page
      *
@@ -15,7 +29,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopTrader($page = 1)
     {
-        $topTrader = $this->getGameBackendService()->getTopJobCharacter(1);
+        $topTrader = $this->gameDataService->getTopJobCharacter(1);
 
         return $this->getPaginator4QueryBuilder($topTrader, $page);
     }
@@ -27,7 +41,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopHunter($page = 1)
     {
-        $topHunter = $this->getGameBackendService()->getTopJobCharacter(3);
+        $topHunter = $this->gameDataService->getTopJobCharacter(3);
 
         return $this->getPaginator4QueryBuilder($topHunter, $page);
     }
@@ -39,7 +53,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopThieves($page = 1)
     {
-        $topThieves = $this->getGameBackendService()->getTopJobCharacter(2);
+        $topThieves = $this->gameDataService->getTopJobCharacter(2);
 
         return $this->getPaginator4QueryBuilder($topThieves, $page);
     }
@@ -51,7 +65,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopTraderEntityData($limit = 10)
     {
-        $topTrader = $this->getGameBackendService()->getTopJobCharacter(1);
+        $topTrader = $this->gameDataService->getTopJobCharacter(1);
 
         return $topTrader->setMaxResults($limit)
             ->getQuery()
@@ -65,7 +79,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopHunterEntityData($limit = 10)
     {
-        $topHunter = $this->getGameBackendService()->getTopJobCharacter(3);
+        $topHunter = $this->gameDataService->getTopJobCharacter(3);
 
         return $topHunter->setMaxResults($limit)
             ->getQuery()
@@ -79,7 +93,7 @@ class RankingJob extends InvokableBase
      */
     public function getTopThievesEntityData($limit = 10)
     {
-        $topThieves = $this->getGameBackendService()->getTopJobCharacter(2);
+        $topThieves = $this->gameDataService->getTopJobCharacter(2);
 
         return $topThieves->setMaxResults($limit)
             ->getQuery()

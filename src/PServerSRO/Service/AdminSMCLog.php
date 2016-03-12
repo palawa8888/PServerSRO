@@ -3,15 +3,35 @@
 
 namespace PServerSRO\Service;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
+use GameBackend\Options\SroOptions;
 
-class AdminSMCLog extends InvokableBase
+class AdminSMCLog
 {
+    /** @var  EntityManager */
+    protected $accountEntityManager;
+
+    /** @var  SroOptions */
+    protected $gameOptions;
+
     /**
-     * @return \Doctrine\ORM\QueryBuilder
+     * AdminSMCLog constructor.
+     * @param EntityManager $accountEntityManager
+     * @param SroOptions $gameOptions
+     */
+    public function __construct(EntityManager $accountEntityManager, SroOptions $gameOptions)
+    {
+        $this->accountEntityManager = $accountEntityManager;
+        $this->gameOptions = $gameOptions;
+    }
+
+    /**
+     * @return QueryBuilder
      */
     public function getCharacterQueryBuilder()
     {
-        $repository = $this->getAccountEntityManager()->getRepository($this->getGameOptions()->getEntityAccountSmcLog());
+        $repository = $this->accountEntityManager->getRepository($this->gameOptions->getEntityAccountSmcLog());
 
         $queryBuilder = $repository->createQueryBuilder('p')
             ->select('p')
@@ -21,19 +41,4 @@ class AdminSMCLog extends InvokableBase
     }
 
 
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getAccountEntityManager()
-    {
-        return $this->getServiceManager()->get('doctrine.entitymanager.orm_sro_account');
-    }
-
-    /**
-     * @return \GameBackend\Options\SroOptions
-     */
-    protected function getGameOptions()
-    {
-        return $this->getServiceManager()->get('gamebackend_sro_options');
-    }
 }

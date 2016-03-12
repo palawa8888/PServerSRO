@@ -1,19 +1,38 @@
 <?php
 
-
 namespace PServerSRO\Service;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query\Expr\Join;
+use GameBackend\Options\SroOptions;
 
-class AdminCharacter extends InvokableBase
+class AdminCharacter
 {
+    /** @var  EntityManager */
+    protected $shardEntityManager;
+
+    /** @var  SroOptions */
+    protected $gameOptions;
+
     /**
-     * @return \Doctrine\ORM\QueryBuilder
+     * AdminCharacter constructor.
+     * @param EntityManager $shardEntityManager
+     * @param SroOptions $gameOptions
+     */
+    public function __construct(EntityManager $shardEntityManager, SroOptions $gameOptions)
+    {
+        $this->shardEntityManager = $shardEntityManager;
+        $this->gameOptions = $gameOptions;
+    }
+
+    /**
+     * @return QueryBuilder
      */
     public function getCharacterQueryBuilder()
     {
         /** @var \GameBackend\Entity\SRO\Shard\Repository\Character $repository */
-        $repository = $this->getShardEntityManager()->getRepository($this->getGameOptions()->getEntityShardCharacter());
+        $repository = $this->shardEntityManager->getRepository($this->gameOptions->getEntityShardCharacter());
 
         $queryBuilder = $repository->createQueryBuilder('p')
             ->select('p', 'user', 'job', 'guild')
@@ -27,19 +46,4 @@ class AdminCharacter extends InvokableBase
     }
 
 
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getShardEntityManager()
-    {
-        return $this->getServiceManager()->get('doctrine.entitymanager.orm_sro_shard');
-    }
-
-    /**
-     * @return \GameBackend\Options\SroOptions
-     */
-    protected function getGameOptions()
-    {
-        return $this->getServiceManager()->get('gamebackend_sro_options');
-    }
 }

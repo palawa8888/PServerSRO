@@ -3,12 +3,29 @@
 
 namespace PServerSRO\View\Helper;
 
-use PServerCore\Helper\HelperService;
+use PServerCore\Service\CachingHelper;
+use PServerSRO\Service\RankingJob;
+use Zend\Form\View\Helper\AbstractHelper;
 use Zend\View\Model\ViewModel;
 
-class RankingJobTrader extends InvokerBase
+class RankingJobTrader extends AbstractHelper
 {
-    use HelperService;
+    /** @var  CachingHelper */
+    protected $serviceCache;
+
+    /** @var  RankingJob */
+    protected $rankingService;
+
+    /**
+     * RankingJobHunter constructor.
+     * @param CachingHelper $serviceCache
+     * @param RankingJob $rankingService
+     */
+    public function __construct(CachingHelper $serviceCache, RankingJob $rankingService)
+    {
+        $this->serviceCache = $serviceCache;
+        $this->rankingService = $rankingService;
+    }
 
     /**
      * @param int $limit
@@ -16,10 +33,10 @@ class RankingJobTrader extends InvokerBase
      */
     public function __invoke($limit = 10)
     {
-        $traderEntityData = $this->getCachingHelperService()->getItem(
+        $traderEntityData = $this->serviceCache->getItem(
             'PServerSRORankingJobTraderInfo',
             function () use ($limit) {
-                return $this->getRankingJobService()->getTopTraderEntityData($limit);
+                return $this->rankingService->getTopTraderEntityData($limit);
             },
             180
         );

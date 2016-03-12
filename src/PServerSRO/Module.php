@@ -37,16 +37,36 @@ class Module
         return [
             'factories' => [
                 'fortressGuildViewSro' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\Fortress($pluginManager->getServiceLocator());
+                    $serviceLocator = $pluginManager->getServiceLocator();
+                    /** @noinspection PhpParamsInspection */
+                    return new View\Helper\Fortress(
+                        $serviceLocator->get('pserver_cachinghelper_service'),
+                        $serviceLocator->get('gamebackend_dataservice')
+                    );
                 },
                 'rankingJobTraderViewSro' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\RankingJobTrader($pluginManager->getServiceLocator());
+                    $serviceLocator = $pluginManager->getServiceLocator();
+                    /** @noinspection PhpParamsInspection */
+                    return new View\Helper\RankingJobTrader(
+                        $serviceLocator->get('pserver_cachinghelper_service'),
+                        $serviceLocator->get('pserversro_ranking_job_service')
+                    );
                 },
                 'rankingJobHunterViewSro' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\RankingJobHunter($pluginManager->getServiceLocator());
+                    $serviceLocator = $pluginManager->getServiceLocator();
+                    /** @noinspection PhpParamsInspection */
+                    return new View\Helper\RankingJobHunter(
+                        $serviceLocator->get('pserver_cachinghelper_service'),
+                        $serviceLocator->get('pserversro_ranking_job_service')
+                    );
                 },
                 'rankingJobThievesViewSro' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\RankingJobThieves($pluginManager->getServiceLocator());
+                    $serviceLocator = $pluginManager->getServiceLocator();
+                    /** @noinspection PhpParamsInspection */
+                    return new View\Helper\RankingJobThieves(
+                        $serviceLocator->get('pserver_cachinghelper_service'),
+                        $serviceLocator->get('pserversro_ranking_job_service')
+                    );
                 },
             ]
         ];
