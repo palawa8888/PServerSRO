@@ -1,5 +1,6 @@
 <?php
 
+use PServerSRO\Controller;
 use PServerSRO\Service;
 
 return [
@@ -66,11 +67,17 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'PServerSRO\Controller\AdminCharacter' => 'PServerSRO\Controller\AdminCharacterController',
-            'PServerSRO\Controller\AdminSMCLog' => 'PServerSRO\Controller\AdminSMCLogController',
-            'PServerSRO\Controller\RankingJob' => 'PServerSRO\Controller\RankingJobController',
-            'PServerSRO\Controller\UnStuck' => 'PServerSRO\Controller\UnStuckController',
+        'aliases' => [
+            'PServerSRO\Controller\AdminCharacter' => Controller\AdminCharacterController::class,
+            'PServerSRO\Controller\AdminSMCLog' => Controller\AdminSMCLogController::class,
+            'PServerSRO\Controller\RankingJob' => Controller\RankingJobController::class,
+            'PServerSRO\Controller\UnStuck' => Controller\UnStuckController::class,
+        ],
+        'factories' => [
+            Controller\AdminCharacterController::class => Controller\AdminCharacterFactory::class,
+            Controller\AdminSMCLogController::class => Controller\AdminSMCLogFactory::class,
+            Controller\RankingJobController::class => Controller\RankingJobFactory::class,
+            Controller\UnStuckController::class => Controller\UnStuckFactory::class,
         ],
     ],
     'service_manager' => [

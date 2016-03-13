@@ -3,21 +3,41 @@
 
 namespace PServerSRO\Controller;
 
-
+use ZfcDatagrid\Datagrid;
+use PServerSRO\Service\AdminCharacter;
 use PServerAdmin\ZfcDataGrid\Column\Type\DateTime as AdminDateTime;
 use Zend\Mvc\Controller\AbstractActionController;
 use ZfcDatagrid\Column;
 
 class AdminCharacterController extends AbstractActionController
 {
+    /** @var  Datagrid */
+    protected $dataGridService;
+
+    /** @var  AdminCharacter */
+    protected $adminCharacterService;
+
+    /**
+     * AdminCharacterController constructor.
+     * @param Datagrid $dataGridService
+     * @param AdminCharacter $adminCharacterService
+     */
+    public function __construct(Datagrid $dataGridService, AdminCharacter $adminCharacterService)
+    {
+        $this->dataGridService = $dataGridService;
+        $this->adminCharacterService = $adminCharacterService;
+    }
+
+    /**
+     * @return \Zend\Http\Response\Stream|\Zend\Stdlib\ResponseInterface|\Zend\View\Model\ViewModel
+     */
     public function indexAction()
     {
         $this->layout('layout/admin');
 
-        /* @var $grid \ZfcDatagrid\Datagrid */
-        $grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
+        $grid = $this->dataGridService;
         $grid->setTitle('character-panel grid');
-        $grid->setDataSource($this->getAdminCharacterService()->getCharacterQueryBuilder());
+        $grid->setDataSource($this->adminCharacterService->getCharacterQueryBuilder());
         $grid->setToolbarTemplate(null);
 
         $col = new Column\Select('id', 'p');
@@ -67,11 +87,5 @@ class AdminCharacterController extends AbstractActionController
         return $grid->getResponse();
     }
 
-    /**
-     * @return \PServerSRO\Service\AdminCharacter
-     */
-    protected function getAdminCharacterService()
-    {
-        return $this->getServiceLocator()->get('pserversro_admin_character_service');
-    }
+
 }

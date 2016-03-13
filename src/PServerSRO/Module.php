@@ -81,8 +81,11 @@ class Module
     public function getServiceConfig()
     {
         return [
+            'aliases' => [
+                'pserversro_unstuck_options' => Options\UnStuckPositionOptions::class,
+            ],
             'factories' => [
-                'pserversro_unstuck_options' => function ($sm) {
+                Options\UnStuckPositionOptions::class => function ($sm) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
                     $config = $sm->get('Configuration');
                     return new Options\UnStuckPositionOptions($config['p-server-sro']['un_stuck_position']);
