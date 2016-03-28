@@ -72,7 +72,7 @@ class AdminCharacterController extends AbstractActionController
         $col->setLabel('JobType');
         $grid->addColumn($col);
         $col = new Column\Select('level', 'job');
-        $col->setLabel('Level');
+        $col->setLabel('JobLevel');
         $grid->addColumn($col);
         $col = new Column\Select('level', 'p');
         $col->setLabel('Level');
