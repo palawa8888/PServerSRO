@@ -30,7 +30,7 @@
     "kokspflanze/game-backend": "~0.1",
     "kokspflanze/p-server-core": "~0.1",
     "kokspflanze/p-server-panel": "~0.1",
-    "thadafinser/zfc-datagrid": "~1.0",
+    "thadafinser/zfc-datagrid": "~1.2",
     "zf-commons/zfc-twig": "dev-master"
   },
   "require-dev": {

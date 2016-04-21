@@ -7,25 +7,29 @@ use ZfcDatagrid\Datagrid;
 use PServerSRO\Service\AdminCharacter;
 use PServerAdmin\ZfcDataGrid\Column\Type\DateTime as AdminDateTime;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Renderer\RendererInterface;
 use ZfcDatagrid\Column;
 
 class AdminCharacterController extends AbstractActionController
 {
     /** @var  Datagrid */
     protected $dataGridService;
-
     /** @var  AdminCharacter */
     protected $adminCharacterService;
+    /** @var  RendererInterface */
+    protected $viewRenderer;
 
     /**
      * AdminCharacterController constructor.
      * @param Datagrid $dataGridService
      * @param AdminCharacter $adminCharacterService
+     * @param RendererInterface $renderer
      */
-    public function __construct(Datagrid $dataGridService, AdminCharacter $adminCharacterService)
+    public function __construct(Datagrid $dataGridService, AdminCharacter $adminCharacterService, RendererInterface $renderer)
     {
         $this->dataGridService = $dataGridService;
         $this->adminCharacterService = $adminCharacterService;
+        $this->viewRenderer = $renderer;
     }
 
     /**
@@ -47,7 +51,7 @@ class AdminCharacterController extends AbstractActionController
         $col->setLabel('BackendId');
         $col->addFormatter(
             new Column\Formatter\GenerateLink(
-                $this->getServiceLocator(),
+                $this->viewRenderer,
                 'PServerAdmin/user_detail',
                 'usrId',
                 ['action' => 'backend']

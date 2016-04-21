@@ -22,7 +22,6 @@ class AdminSMCLogFactory implements FactoryInterface
         /** @var \PServerSRO\Service\AdminSMCLog $adminSMCLog */
         $adminSMCLog = $serviceLocator->getServiceLocator()->get('pserversro_admin_smc_log_service');
 
-
         return new AdminSMCLogController($dataGridService, $adminSMCLog);
     }
 }

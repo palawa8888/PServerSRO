@@ -27,6 +27,9 @@ class UnStuckController extends AbstractActionController
         $this->userService = $userService;
     }
 
+    /**
+     * @return JsonModel
+     */
     public function indexAction()
     {
         $characterId = $this->params()->fromPost('characterId', 0);

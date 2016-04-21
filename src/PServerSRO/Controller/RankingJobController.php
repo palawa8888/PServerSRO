@@ -19,6 +19,9 @@ class RankingJobController extends AbstractActionController
         $this->rankingJobService = $rankingJobService;
     }
 
+    /**
+     * @return array
+     */
     public function topTraderAction()
     {
         return [
@@ -26,6 +29,9 @@ class RankingJobController extends AbstractActionController
         ];
     }
 
+    /**
+     * @return array
+     */
     public function topHunterAction()
     {
         return [
@@ -33,6 +39,9 @@ class RankingJobController extends AbstractActionController
         ];
     }
 
+    /**
+     * @return array
+     */
     public function topThievesAction()
     {
         return [
