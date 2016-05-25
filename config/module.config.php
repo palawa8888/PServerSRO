@@ -88,37 +88,10 @@ return [
             'pserversro_admin_character_service' => Service\AdminCharacter::class,
         ],
         'factories' => [
-            Service\RankingJob::class => function($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\RankingJob($sm->get('gamebackend_dataservice'));
-            },
-            Service\UnStuck::class => function($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\UnStuck(
-                    $sm->get('gamebackend_dataservice'),
-                    $sm->get('pserversro_unstuck_options'),
-                    $sm->get('pserverpanel_character_service'),
-                    $sm->get('doctrine.entitymanager.orm_sro_shard')
-                );
-            },
-            Service\AdminSMCLog::class => function($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\AdminSMCLog(
-                    $sm->get('doctrine.entitymanager.orm_sro_account'),
-                    $sm->get('gamebackend_sro_options')
-                );
-            },
-            Service\AdminCharacter::class => function($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\AdminCharacter(
-                    $sm->get('doctrine.entitymanager.orm_sro_shard'),
-                    $sm->get('gamebackend_sro_options')
-                );
-            },
+            Service\RankingJob::class => Service\RankingJobFactory::class,
+            Service\UnStuck::class => Service\UnStuckFactory::class,
+            Service\AdminSMCLog::class => Service\AdminSMCLogFactory::class,
+            Service\AdminCharacter::class => Service\AdminCharacterFactory::class,
         ],
     ],
     'view_manager' => [
