@@ -1,6 +1,8 @@
 <?php
 
 use PServerSRO\Controller;
+use PServerSRO\Options;
+use PServerSRO\View\Helper;
 use PServerSRO\Service;
 
 return [
@@ -86,12 +88,28 @@ return [
             'pserversro_ranking_job_service' => Service\RankingJob::class,
             'pserversro_admin_smc_log_service' => Service\AdminSMCLog::class,
             'pserversro_admin_character_service' => Service\AdminCharacter::class,
+            'pserversro_unstuck_options' => Options\UnStuckPositionOptions::class,
         ],
         'factories' => [
             Service\RankingJob::class => Service\RankingJobFactory::class,
             Service\UnStuck::class => Service\UnStuckFactory::class,
             Service\AdminSMCLog::class => Service\AdminSMCLogFactory::class,
             Service\AdminCharacter::class => Service\AdminCharacterFactory::class,
+            Options\UnStuckPositionOptions::class => Options\UnStuckPositionFactory::class,
+        ],
+    ],
+    'view_helpers' => [
+        'aliases' => [
+            'fortressGuildViewSro' => Helper\Fortress::class,
+            'rankingJobTraderViewSro' => Helper\RankingJobTrader::class,
+            'rankingJobHunterViewSro' => Helper\RankingJobHunter::class,
+            'rankingJobThievesViewSro' => Helper\RankingJobThieves::class,
+        ],
+        'factories' => [
+            Helper\Fortress::class => Helper\FortressFactory::class,
+            Helper\RankingJobTrader::class => Helper\RankingJobTraderFactory::class,
+            Helper\RankingJobHunter::class => Helper\RankingJobHunterFactory::class,
+            Helper\RankingJobThieves::class => Helper\RankingJobThievesFactory::class,
         ],
     ],
     'view_manager' => [
