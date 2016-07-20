@@ -9,14 +9,14 @@ return [
     'router' => [
         'routes' => [
             'PServerSRO'  => [
-                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'type'    => 'Literal',
                 'options' => [
                     'route'    => '/sro-tools/',
                 ],
                 'may_terminate' => true,
                 'child_routes'  => [
                     'un_stuck' => [
-                        'type' => 'segment',
+                        'type' => 'Segment',
                         'options' => [
                             'route'    => 'un-stuck.html',
                             'defaults' => [
@@ -26,7 +26,7 @@ return [
                         ],
                     ],
                     'admin_character' => [
-                        'type' => 'segment',
+                        'type' => 'Segment',
                         'options' => [
                             'route'    => 'admin/character.html',
                             'defaults' => [
@@ -36,7 +36,7 @@ return [
                         ],
                     ],
                     'admin_smc_log' => [
-                        'type' => 'segment',
+                        'type' => 'Segment',
                         'options' => [
                             'route'    => 'admin/smc-log.html',
                             'defaults' => [
@@ -51,7 +51,7 @@ return [
                 'may_terminate' => true,
                 'child_routes'  => [
                     'sro_ranking_job' => [
-                        'type' => 'segment',
+                        'type' => 'Segment',
                         'options' => [
                             'route'    => 'job/:action[-:page].html',
                             'constraints' => [
