@@ -4,9 +4,7 @@
 namespace PServerSRO\Controller;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Renderer\PhpRenderer;
 
 class AdminCharacterFactory implements FactoryInterface
@@ -31,13 +29,4 @@ class AdminCharacterFactory implements FactoryInterface
         return new AdminCharacterController($dataGridService, $adminCharacterService, $viewRenderer);
     }
 
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     *
-     * @return AdminCharacterController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), AdminCharacterController::class);
-    }
 }

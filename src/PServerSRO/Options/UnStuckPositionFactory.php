@@ -5,8 +5,7 @@ namespace PServerSRO\Options;
 
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class UnStuckPositionFactory implements FactoryInterface
 {
@@ -19,15 +18,6 @@ class UnStuckPositionFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new UnStuckPositionOptions($container->get('config')['p-server-sro']['un_stuck_position']);
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return UnStuckPositionOptions
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, UnStuckPositionOptions::class);
     }
 
 }

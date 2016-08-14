@@ -2,7 +2,7 @@
 
 ## SYSTEM REQUIREMENTS
 
-requires PHP 5.5 or later; we recommend using the latest PHP version whenever possible.
+requires PHP 5.6 or later; we recommend using the latest PHP version whenever possible.
 
 ## INSTALLATION
 

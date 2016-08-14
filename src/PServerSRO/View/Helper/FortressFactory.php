@@ -3,12 +3,9 @@
 
 namespace PServerSRO\View\Helper;
 
-
 use Interop\Container\ContainerInterface;
 use PServerCore\Service\CachingHelper;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class FortressFactory implements FactoryInterface
 {
@@ -24,15 +21,6 @@ class FortressFactory implements FactoryInterface
             $container->get(CachingHelper::class),
             $container->get('gamebackend_dataservice')
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface|ServiceLocatorAwareInterface $serviceLocator
-     * @return Fortress
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), Fortress::class);
     }
 
 }

@@ -4,9 +4,7 @@
 namespace PServerSRO\Controller;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class RankingJobFactory implements FactoryInterface
 {
@@ -21,13 +19,4 @@ class RankingJobFactory implements FactoryInterface
         return new RankingJobController($container->get('pserversro_ranking_job_service'));
     }
 
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     *
-     * @return RankingJobController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), RankingJobController::class);
-    }
 }

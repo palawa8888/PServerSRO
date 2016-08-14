@@ -3,10 +3,8 @@
 
 namespace PServerSRO\Service;
 
-
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AdminCharacterFactory implements FactoryInterface
 {
@@ -22,15 +20,6 @@ class AdminCharacterFactory implements FactoryInterface
             $container->get('doctrine.entitymanager.orm_sro_shard'),
             $container->get('gamebackend_sro_options')
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return AdminCharacter
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, AdminCharacter::class);
     }
 
 }

@@ -5,8 +5,7 @@ namespace PServerSRO\Service;
 
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class RankingJobFactory implements FactoryInterface
 {
@@ -19,16 +18,6 @@ class RankingJobFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new RankingJob($container->get('gamebackend_dataservice'));
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return RankingJob
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        /** @noinspection PhpParamsInspection */
-        return $this($serviceLocator);
     }
 
 }

@@ -4,12 +4,13 @@ use PServerSRO\Controller;
 use PServerSRO\Options;
 use PServerSRO\View\Helper;
 use PServerSRO\Service;
+use Zend\Router\Http;
 
 return [
     'router' => [
         'routes' => [
             'PServerSRO'  => [
-                'type'    => 'Literal',
+                'type'    => Http\Literal::class,
                 'options' => [
                     'route'    => '/sro-tools/',
                 ],
@@ -20,27 +21,27 @@ return [
                         'options' => [
                             'route'    => 'un-stuck.html',
                             'defaults' => [
-                                'controller'	=> 'PServerSRO\Controller\UnStuck',
+                                'controller'	=> Controller\UnStuckController::class,
                                 'action'		=> 'index'
                             ],
                         ],
                     ],
                     'admin_character' => [
-                        'type' => 'Segment',
+                        'type' => Http\Segment::class,
                         'options' => [
                             'route'    => 'admin/character.html',
                             'defaults' => [
-                                'controller'	=> 'PServerSRO\Controller\AdminCharacter',
+                                'controller'	=> Controller\AdminCharacterController::class,
                                 'action'		=> 'index'
                             ],
                         ],
                     ],
                     'admin_smc_log' => [
-                        'type' => 'Segment',
+                        'type' => Http\Segment::class,
                         'options' => [
                             'route'    => 'admin/smc-log.html',
                             'defaults' => [
-                                'controller'	=> 'PServerSRO\Controller\AdminSMCLog',
+                                'controller'	=> Controller\AdminSMCLogController::class,
                                 'action'		=> 'index'
                             ],
                         ],
@@ -51,7 +52,7 @@ return [
                 'may_terminate' => true,
                 'child_routes'  => [
                     'sro_ranking_job' => [
-                        'type' => 'Segment',
+                        'type' => Http\Segment::class,
                         'options' => [
                             'route'    => 'job/:action[-:page].html',
                             'constraints' => [
@@ -59,7 +60,7 @@ return [
                                 'page'       => '[0-9]+'
                             ],
                             'defaults' => [
-                                'controller'	=> 'PServerSRO\Controller\RankingJob',
+                                'controller'	=> Controller\RankingJobController::class,
                                 'page'		    => '1',
                             ],
                         ],
@@ -69,12 +70,6 @@ return [
         ],
     ],
     'controllers' => [
-        'aliases' => [
-            'PServerSRO\Controller\AdminCharacter' => Controller\AdminCharacterController::class,
-            'PServerSRO\Controller\AdminSMCLog' => Controller\AdminSMCLogController::class,
-            'PServerSRO\Controller\RankingJob' => Controller\RankingJobController::class,
-            'PServerSRO\Controller\UnStuck' => Controller\UnStuckController::class,
-        ],
         'factories' => [
             Controller\AdminCharacterController::class => Controller\AdminCharacterFactory::class,
             Controller\AdminSMCLogController::class => Controller\AdminSMCLogFactory::class,
@@ -120,7 +115,7 @@ return [
             'p-server-sro/ranking-job-trader' => __DIR__ . '/../view/helper/ranking-job-trader.phtml',
         ],
         'template_path_stack' => [
-            __DIR__ . '/../view',
+            'PServerSRO' => __DIR__ . '/../view',
         ],
     ],
     'pserver' => [

@@ -4,9 +4,7 @@
 namespace PServerSRO\Controller;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AdminSMCLogFactory implements FactoryInterface
 {
@@ -27,13 +25,4 @@ class AdminSMCLogFactory implements FactoryInterface
         return new AdminSMCLogController($dataGridService, $adminSMCLog);
     }
 
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     *
-     * @return AdminSMCLogController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), AdminSMCLogController::class);
-    }
 }

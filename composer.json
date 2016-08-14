@@ -3,27 +3,27 @@
   "description": "sro extension for pserver-cms ",
   "keywords": [
     "framework",
-    "zf2",
+    "zf",
     "game backend",
     "p-server-cms",
     "sro extension"
   ],
   "homepage": "https://github.com/kokspflanze/PServerSRO",
   "autoload": {
-    "psr-0": {
-      "PServerSRO\\": "src/"
+    "psr-4": {
+      "PServerSRO\\": "src/PServerSRO"
     }
   },
   "authors": [
     {
       "name": "Oliver",
-      "email": "kokspflanze@gmx.de"
+      "email": "kokspflanze@protonmail.com"
     }
   ],
   "require": {
-    "php": ">=5.5",
-    "zendframework/zend-servicemanager": "~2.5|~3.0",
-    "zendframework/zend-mvc": "~2.5|~3.0",
+    "php": ">=5.6",
+    "zendframework/zend-servicemanager": "~3.0",
+    "zendframework/zend-mvc": "~3.0",
     "zendframework/zend-view": "~2.5",
     "kokspflanze/game-backend": "~0.1",
     "kokspflanze/p-server-core": "~0.1",
@@ -31,8 +31,8 @@
   },
   "require-dev": {
     "thadafinser/zfc-datagrid": "~1.2",
-    "mabuzagu/pdo-dblib-module": "dev-master",
-    "zf-commons/zfc-twig": "dev-master",
+    "kokspflanze/pdo-dblib-module": "~1.0",
+    "kokspflanze/zfc-twig": "~1.3",
     "kokspflanze/p-server-admin": "~0.1"
   }
 }

@@ -4,9 +4,7 @@
 namespace PServerSRO\Controller;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class UnStuckFactory implements FactoryInterface
 {
@@ -26,14 +24,4 @@ class UnStuckFactory implements FactoryInterface
         return new UnStuckController($unStuckService, $userService);
     }
 
-
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     *
-     * @return UnStuckController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), UnStuckController::class);
-    }
 }

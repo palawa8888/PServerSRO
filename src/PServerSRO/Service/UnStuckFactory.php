@@ -6,8 +6,7 @@ namespace PServerSRO\Service;
 
 use Interop\Container\ContainerInterface;
 use PServerPanel\Service\Character;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class UnStuckFactory implements FactoryInterface
 {
@@ -25,15 +24,6 @@ class UnStuckFactory implements FactoryInterface
             $container->get(Character::class),
             $container->get('doctrine.entitymanager.orm_sro_shard')
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return UnStuck
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, UnStuck::class);
     }
 
 }

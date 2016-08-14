@@ -3,13 +3,10 @@
 
 namespace PServerSRO\View\Helper;
 
-
 use Interop\Container\ContainerInterface;
 use PServerCore\Service\CachingHelper;
 use PServerSRO\Service\RankingJob;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class RankingJobThievesFactory implements FactoryInterface
 {
@@ -25,15 +22,6 @@ class RankingJobThievesFactory implements FactoryInterface
             $container->get(CachingHelper::class),
             $container->get(RankingJob::class)
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface|ServiceLocatorAwareInterface $serviceLocator
-     * @return RankingJobThieves
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), RankingJobThieves::class);
     }
 
 }
