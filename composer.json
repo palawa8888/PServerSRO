@@ -8,6 +8,7 @@
     "p-server-cms",
     "sro extension"
   ],
+  "license": "MIT",
   "homepage": "https://github.com/kokspflanze/PServerSRO",
   "autoload": {
     "psr-4": {
@@ -21,18 +22,17 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
-    "zendframework/zend-servicemanager": "~3.0",
-    "zendframework/zend-mvc": "~3.0",
-    "zendframework/zend-view": "~2.5",
-    "kokspflanze/game-backend": "~0.1",
-    "kokspflanze/p-server-core": "~0.1",
-    "kokspflanze/p-server-panel": "~0.1"
+    "php": "^5.6 || ^7.0.6",
+    "zendframework/zend-servicemanager": "^3.0",
+    "zendframework/zend-mvc": "^3.0",
+    "zendframework/zend-view": "^2.5",
+    "kokspflanze/game-backend": "~0.6",
+    "kokspflanze/p-server-core": "^1.0",
+    "kokspflanze/p-server-panel": "^1.0"
   },
   "require-dev": {
-    "thadafinser/zfc-datagrid": "~1.2",
-    "kokspflanze/pdo-dblib-module": "~1.0",
+    "thadafinser/zfc-datagrid": "^1.3",
     "kokspflanze/zfc-twig": "~1.3",
-    "kokspflanze/p-server-admin": "~0.1"
+    "kokspflanze/p-server-admin": "^1.0"
   }
 }
