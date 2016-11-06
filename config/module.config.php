@@ -5,6 +5,7 @@ use PServerSRO\Options;
 use PServerSRO\View\Helper;
 use PServerSRO\Service;
 use Zend\Router\Http;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -99,12 +100,14 @@ return [
             'rankingJobTraderViewSro' => Helper\RankingJobTrader::class,
             'rankingJobHunterViewSro' => Helper\RankingJobHunter::class,
             'rankingJobThievesViewSro' => Helper\RankingJobThieves::class,
+            'jobType2Name' => Helper\JobTypeToName::class,
         ],
         'factories' => [
             Helper\Fortress::class => Helper\FortressFactory::class,
             Helper\RankingJobTrader::class => Helper\RankingJobTraderFactory::class,
             Helper\RankingJobHunter::class => Helper\RankingJobHunterFactory::class,
             Helper\RankingJobThieves::class => Helper\RankingJobThievesFactory::class,
+            Helper\JobTypeToName::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
