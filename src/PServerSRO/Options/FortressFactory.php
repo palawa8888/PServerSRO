@@ -1,10 +1,8 @@
 <?php
 
-namespace PServerSRO\View\Helper;
+namespace PServerSRO\Options;
 
 use Interop\Container\ContainerInterface;
-use PServerCore\Service\CachingHelper;
-use PServerSRO\Options\Fortress as FortressOptions;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 class FortressFactory implements FactoryInterface
@@ -17,11 +15,7 @@ class FortressFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new Fortress(
-            $container->get(CachingHelper::class),
-            $container->get('gamebackend_dataservice'),
-            $container->get(FortressOptions::class)
-        );
+        return new Fortress($container->get('config')['p-server-sro']['fortress']);
     }
 
 }

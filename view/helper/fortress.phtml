@@ -16,9 +16,15 @@
         ?>
             <li>
                 <strong><?= $this->escapeHtml($fortressMapping[$fortress->getId()]) ?>:</strong>
-                <a class="text-primary" href="<?= $this->url('PServerRanking/guild', ['id' => $fortress->getGuild()->getId()]) ?>">
-                    <?= $this->escapeHtml($fortress->getGuild()->getName()) ?>
-                </a>
+                <?php if (!$fortress->getGuild() || $fortress->getGuild()->getId() < 1) : ?>
+                    <span class="text-primary">
+                        <?= $this->translate('Not occupied') ?>
+                    </span>
+                <?php else : ?>
+                    <a class="text-primary" href="<?= $this->url('PServerRanking/guild', ['id' => $fortress->getGuild()->getId()]) ?>">
+                        <?= $this->escapeHtml($fortress->getGuild()->getName()) ?>
+                    </a>
+                <?php endif; ?>
             </li>
 		<?php endforeach ?>
 	</ul>

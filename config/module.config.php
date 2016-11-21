@@ -92,6 +92,7 @@ return [
             Service\AdminSMCLog::class => Service\AdminSMCLogFactory::class,
             Service\AdminCharacter::class => Service\AdminCharacterFactory::class,
             Options\UnStuckPositionOptions::class => Options\UnStuckPositionFactory::class,
+            Options\Fortress::class => Options\FortressFactory::class,
         ],
     ],
     'view_helpers' => [
@@ -175,6 +176,17 @@ return [
             'tel_world_id' => 1,
             'died_world_id' => 1
         ],
+        'fortress' => [
+            /**
+             * Options\Fortress::MOD_VALID_GUILD => show all entries with a valid-guild
+             * Options\Fortress::MOD_ALL_ENTRIES => just show everything
+             */
+            'mod' => Options\Fortress::MOD_VALID_GUILD,
+            /**
+             * list of fortress ids, which should be not visible
+             */
+            'disable' => []
+        ]
     ],
 	'p-server-panel' => [
         'character_panel_navigation' => [
