@@ -231,5 +231,13 @@ return [
                 ],
             ],
         ],
+        'github_api' => [
+            'repository_list' => [
+                [
+                    'username' => 'kokspflanze',
+                    'repository' => 'PServerSRO'
+                ],
+            ],
+        ],
     ],
 ];
