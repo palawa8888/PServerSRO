@@ -47,6 +47,16 @@ return [
                             ],
                         ],
                     ],
+                    'admin_job_name_history' => [
+                        'type' => Http\Segment::class,
+                        'options' => [
+                            'route'    => 'admin/job-name-history.html',
+                            'defaults' => [
+                                'controller'	=> Controller\AdminJobNameHistoryController::class,
+                                'action'		=> 'index'
+                            ],
+                        ],
+                    ],
                 ],
             ],
             'PServerRanking'  => [
@@ -74,6 +84,7 @@ return [
         'factories' => [
             Controller\AdminCharacterController::class => Controller\AdminCharacterFactory::class,
             Controller\AdminSMCLogController::class => Controller\AdminSMCLogFactory::class,
+            Controller\AdminJobNameHistoryController::class => Controller\AdminJobNameHistoryFactory::class,
             Controller\RankingJobController::class => Controller\RankingJobFactory::class,
             Controller\UnStuckController::class => Controller\UnStuckFactory::class,
         ],
@@ -91,6 +102,7 @@ return [
             Service\UnStuck::class => Service\UnStuckFactory::class,
             Service\AdminSMCLog::class => Service\AdminSMCLogFactory::class,
             Service\AdminCharacter::class => Service\AdminCharacterFactory::class,
+            Service\AdminJobNameHistory::class => Service\AdminJobNameHistoryFactory::class,
             Options\UnStuckPositionOptions::class => Options\UnStuckPositionFactory::class,
             Options\Fortress::class => Options\FortressFactory::class,
         ],
@@ -216,6 +228,12 @@ return [
                         'name' => 'CharacterList',
                         'route' => [
                             'name' => 'PServerSRO/admin_character',
+                        ],
+                    ],
+                    'job_name_history' => [
+                        'name' => 'JobNameHistory',
+                        'route' => [
+                            'name' => 'PServerSRO/admin_job_name_history',
                         ],
                     ],
                 ],

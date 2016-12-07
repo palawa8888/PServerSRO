@@ -1,11 +1,11 @@
 <?php
 
-
 namespace PServerSRO\Controller;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Renderer\PhpRenderer;
+use ZfcDatagrid\Datagrid;
 
 class AdminCharacterFactory implements FactoryInterface
 {
@@ -18,7 +18,7 @@ class AdminCharacterFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var \ZfcDatagrid\Datagrid $dataGridService */
-        $dataGridService = $container->get('ZfcDatagrid\Datagrid');
+        $dataGridService = $container->get(Datagrid::class);
 
         /** @var \PServerSRO\Service\AdminCharacter $adminCharacterService */
         $adminCharacterService = $container->get('pserversro_admin_character_service');
